@@ -272,7 +272,7 @@ extension MTDNavigationController: UINavigationControllerDelegate {
         }
         
         if !mtd_vc.hasSetInteractivePop {
-            mtd_vc.disableInteractivePop = navigationView.isHidden
+            mtd_vc.disableInteractivePop = navigationView.superview == nil || navigationView.isHidden
         }
         
         MTDNavigationController.attemptRotationToDeviceOrientation()

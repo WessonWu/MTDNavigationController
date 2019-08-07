@@ -8,6 +8,8 @@
 
 import UIKit
 
+public protocol MTDViewControllerNaked {}
+
 open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
     public private(set) var contentViewController: UIViewController!
     
@@ -217,6 +219,9 @@ open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
 @inline(__always) func MTDSafeWrapViewController(_ viewController: UIViewController) -> UIViewController {
     if let vc = viewController as? MTDWrapperController {
         return vc
+    }
+    if let _ = viewController as? MTDViewControllerNaked {
+        return viewController
     }
     return MTDWrapperController(contentViewController: viewController)
 }

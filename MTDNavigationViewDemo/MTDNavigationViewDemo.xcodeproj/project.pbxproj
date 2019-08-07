@@ -10,8 +10,10 @@
 		0A1FC9C022F31CBE00C9F674 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1FC9BF22F31CBE00C9F674 /* AppDelegate.swift */; };
 		0A1FC9C522F31CBE00C9F674 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A1FC9C322F31CBE00C9F674 /* Main.storyboard */; };
 		0A1FC9C722F31CBF00C9F674 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A1FC9C622F31CBF00C9F674 /* Assets.xcassets */; };
-		0A1FC9CA22F31CBF00C9F674 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A1FC9C822F31CBF00C9F674 /* LaunchScreen.storyboard */; };
 		0A2DA26C22FA9C3F00E03B8A /* MTDNavigationView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 0A2DA26B22FA9C3F00E03B8A /* MTDNavigationView.podspec */; };
+		0A51C8F922FB207700DC3179 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A1FC9C822F31CBF00C9F674 /* LaunchScreen.storyboard */; };
+		0A51C8FF22FB227F00DC3179 /* NakedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A51C8FE22FB227F00DC3179 /* NakedTableViewController.swift */; };
+		0A51C90122FB228F00DC3179 /* Naked.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A51C90022FB228F00DC3179 /* Naked.storyboard */; };
 		0ABEB4FB22F5766700BDF624 /* TranslucentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABEB4FA22F5766700BDF624 /* TranslucentTableViewController.swift */; };
 		0ABEB50122F8028C00BDF624 /* FeaturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABEB50022F8028C00BDF624 /* FeaturesTableViewController.swift */; };
 		0ABEB50322F802A300BDF624 /* Features.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABEB50222F802A300BDF624 /* Features.storyboard */; };
@@ -27,6 +29,8 @@
 		0A1FC9C922F31CBF00C9F674 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A1FC9CB22F31CBF00C9F674 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A2DA26B22FA9C3F00E03B8A /* MTDNavigationView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; fileEncoding = 4; name = MTDNavigationView.podspec; path = ../MTDNavigationView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		0A51C8FE22FB227F00DC3179 /* NakedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NakedTableViewController.swift; sourceTree = "<group>"; };
+		0A51C90022FB228F00DC3179 /* Naked.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Naked.storyboard; sourceTree = "<group>"; };
 		0ABEB4FA22F5766700BDF624 /* TranslucentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslucentTableViewController.swift; sourceTree = "<group>"; };
 		0ABEB50022F8028C00BDF624 /* FeaturesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesTableViewController.swift; sourceTree = "<group>"; };
 		0ABEB50222F802A300BDF624 /* Features.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Features.storyboard; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 		0A1FC9BE22F31CBE00C9F674 /* MTDNavigationViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				0A51C90022FB228F00DC3179 /* Naked.storyboard */,
+				0A51C8FE22FB227F00DC3179 /* NakedTableViewController.swift */,
 				0A1FC9C322F31CBE00C9F674 /* Main.storyboard */,
 				0A1FC9BF22F31CBE00C9F674 /* AppDelegate.swift */,
 				0ABEB4FA22F5766700BDF624 /* TranslucentTableViewController.swift */,
@@ -160,8 +166,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A1FC9CA22F31CBF00C9F674 /* LaunchScreen.storyboard in Resources */,
+				0A51C8F922FB207700DC3179 /* LaunchScreen.storyboard in Resources */,
 				0ABEB50322F802A300BDF624 /* Features.storyboard in Resources */,
+				0A51C90122FB228F00DC3179 /* Naked.storyboard in Resources */,
 				0A1FC9C722F31CBF00C9F674 /* Assets.xcassets in Resources */,
 				0A1FC9C522F31CBE00C9F674 /* Main.storyboard in Resources */,
 				0A2DA26C22FA9C3F00E03B8A /* MTDNavigationView.podspec in Resources */,
@@ -220,6 +227,7 @@
 				0A1FC9C022F31CBE00C9F674 /* AppDelegate.swift in Sources */,
 				0ABEB50522F806C800BDF624 /* ColorSelectionTableViewController.swift in Sources */,
 				0ABEB4FB22F5766700BDF624 /* TranslucentTableViewController.swift in Sources */,
+				0A51C8FF22FB227F00DC3179 /* NakedTableViewController.swift in Sources */,
 				0ABEB50122F8028C00BDF624 /* FeaturesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
