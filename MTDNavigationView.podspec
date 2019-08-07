@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MTDNavigationView'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = '自定义导航栏'
   s.description      = '自定义导航栏'
 
