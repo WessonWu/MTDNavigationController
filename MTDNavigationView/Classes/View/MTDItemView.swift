@@ -8,23 +8,9 @@
 
 import UIKit
 
-open class MTDImageItemView: ImageButton {
-    open override var intrinsicContentSize: CGSize {
-        return CGSize(width: 32, height: MTDNavigationManager.style.contentHeight)
-    }
-}
+open class MTDImageItemView: ImageButton {}
 
-open class MTDTitleItemView: TitleButton {
-    override func commonInitilization() {
-        super.commonInitilization()
-        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-    }
-    
-    open override var intrinsicContentSize: CGSize {
-        let size = super.intrinsicContentSize
-        return CGSize(width: size.width, height: MTDNavigationManager.style.contentHeight)
-    }
-}
+open class MTDTitleItemView: TitleButton {}
 
 open class MTDSpacingItemView: NoBackgroundView {
     open var spacing: CGFloat = 0

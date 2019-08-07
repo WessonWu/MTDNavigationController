@@ -19,8 +19,17 @@ open class BasicButton: UIButton {
         commonInitilization()
     }
     
+    open override var intrinsicContentSize: CGSize {
+        return CGSize(width: super.intrinsicContentSize.width,
+                      height: MTDNavigationManager.style.contentHeight)
+    }
+    
     func commonInitilization() {
         self.tintColor = MTDNavigationManager.style.tintColor
+        self.contentEdgeInsets = UIEdgeInsets(top: 0,
+                                              left: CGFloat.defaultEdge,
+                                              bottom: 0,
+                                              right: CGFloat.defaultEdge)
     }
 }
 
@@ -70,12 +79,10 @@ open class BackButton: ImageButton {
     
     override func commonInitilization() {
         super.commonInitilization()
-        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 8)
-    }
-    
-    open override var intrinsicContentSize: CGSize {
-        let contentSize = super.intrinsicContentSize
-        return CGSize(width: contentSize.width, height: 44)
+        self.contentEdgeInsets = UIEdgeInsets(top: 0,
+                                              left: 2 * CGFloat.defaultEdge,
+                                              bottom: 0,
+                                              right: CGFloat.defaultEdge)
     }
 }
 
@@ -88,4 +95,9 @@ extension UIImage {
         draw(at: .zero, blendMode: .normal, alpha: alpha)
         return UIGraphicsGetImageFromCurrentImageContext()
     }
+}
+
+
+extension CGFloat {
+    static let defaultEdge: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 10 : 8
 }

@@ -8,7 +8,21 @@
 
 import UIKit
 
-final class NavigationContentView: NoBackgroundView {}
+final class NavigationContentView: NoBackgroundView {
+    override func commonInitilization() {
+        super.commonInitilization()
+        if #available(iOS 11.0, *) {
+            var margins = self.directionalLayoutMargins
+            margins.leading = CGFloat.defaultEdge
+            margins.trailing = CGFloat.defaultEdge
+            self.directionalLayoutMargins = margins
+        }
+        var margins = self.layoutMargins
+        margins.left = CGFloat.defaultEdge
+        margins.right = CGFloat.defaultEdge
+        self.layoutMargins = margins
+    }
+}
 
 final class ShadowImageView: UIImageView {
     override var backgroundColor: UIColor? {
