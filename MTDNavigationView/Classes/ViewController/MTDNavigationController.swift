@@ -242,14 +242,14 @@ open class MTDNavigationController: UINavigationController, MTDNavigationViewDel
     }
     
     
-    public func performBackAction(in navigationView: MTDNavigationView) {
+    open func performBackAction(in navigationView: MTDNavigationView) {
         self.popViewController(animated: true)
     }
     
 }
 // MARK: - UINavigationControllerDelegate Proxy
 extension MTDNavigationController: UINavigationControllerDelegate {
-    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+    open func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         let isRootVC = viewController.isEqual(self.viewControllers.first)
         let unwrapped = MTDSafeUnwrapViewController(viewController)
         let mtd_vc = unwrapped.mtd
@@ -262,7 +262,7 @@ extension MTDNavigationController: UINavigationControllerDelegate {
                                                 animated: animated)
     }
     
-    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+    open func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         let unwrapped = MTDSafeUnwrapViewController(viewController)
         let mtd_vc = unwrapped.mtd
         
@@ -294,20 +294,20 @@ extension MTDNavigationController: UINavigationControllerDelegate {
     }
     
     
-    public func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+    open func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
         return self.mtd_delegate?.navigationControllerSupportedInterfaceOrientations?(navigationController) ?? .all
     }
     
-    public func navigationControllerPreferredInterfaceOrientationForPresentation(_ navigationController: UINavigationController) -> UIInterfaceOrientation {
+    open func navigationControllerPreferredInterfaceOrientationForPresentation(_ navigationController: UINavigationController) -> UIInterfaceOrientation {
         return self.mtd_delegate?.navigationControllerPreferredInterfaceOrientationForPresentation?(navigationController) ?? .portrait
     }
     
-    public func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    open func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return self.mtd_delegate?.navigationController?(navigationController,
                                                        interactionControllerFor: animationController)
     }
     
-    public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return self.mtd_delegate?.navigationController?(navigationController,
                                                        animationControllerFor: operation,
                                                        from: MTDSafeUnwrapViewController(fromVC),
@@ -316,7 +316,7 @@ extension MTDNavigationController: UINavigationControllerDelegate {
 }
 
 extension MTDNavigationController: UIGestureRecognizerDelegate {
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard gestureRecognizer.isEqual(self.interactivePopGestureRecognizer) else {
             return true
         }
@@ -327,11 +327,11 @@ extension MTDNavigationController: UIGestureRecognizerDelegate {
         return !topViewController.mtd.disableInteractivePop
     }
     
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
     
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return gestureRecognizer == self.interactivePopGestureRecognizer
     }
 }
