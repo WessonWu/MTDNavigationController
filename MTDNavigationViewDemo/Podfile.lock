@@ -1,0 +1,16 @@
+PODS:
+  - MTDNavigationView (0.1.0)
+
+DEPENDENCIES:
+  - MTDNavigationView (from `../`)
+
+EXTERNAL SOURCES:
+  MTDNavigationView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MTDNavigationView: 4c7fd45dce1477868525f65d3bd3cd78d4423465
+
+PODFILE CHECKSUM: d3e4326a89a9909601fc894e2e0b0a3dbad54ae3
+
+COCOAPODS: 1.7.1
