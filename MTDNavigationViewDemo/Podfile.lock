@@ -1,5 +1,5 @@
 PODS:
-  - MTDNavigationView (0.2.0)
+  - MTDNavigationView (0.2.1)
 
 DEPENDENCIES:
   - MTDNavigationView (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MTDNavigationView: 4e60a0594d0408d75fb590a0ae283484ce60fe9d
+  MTDNavigationView: f5ce8e09482a5446d6998e0f29a763c9023391bf
 
 PODFILE CHECKSUM: 24b2c62d6e00146d47a019e8d21a408412897fc8
 
