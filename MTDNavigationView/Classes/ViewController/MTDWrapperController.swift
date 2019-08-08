@@ -12,9 +12,6 @@ public protocol MTDViewControllerNaked {}
 
 open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
     public private(set) var contentViewController: UIViewController!
-    
-    var observations: [NSKeyValueObservation] = []
-    
     public convenience init(contentViewController: UIViewController) {
         self.init()
         self.contentViewController = contentViewController
@@ -42,12 +39,6 @@ open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.insertSubview(contentView, at: 0)
         vc.didMove(toParent: self)
-        
-        navigationView.titleLabel.text = contentViewController.title
-        let ob1 = contentViewController.observe(\.title) { (vc, _) in
-            navigationView.titleLabel.text = vc.title
-        }
-        observations = [ob1]
     }
     
     open override func viewDidLayoutSubviews() {
@@ -207,11 +198,6 @@ open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
     
     public func performBackAction(in navigationView: MTDNavigationView) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    deinit {
-        observations.forEach { $0.invalidate() }
-        observations = []
     }
 }
 

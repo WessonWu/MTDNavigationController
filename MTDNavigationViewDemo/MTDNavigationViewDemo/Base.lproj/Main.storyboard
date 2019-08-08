@@ -18,6 +18,14 @@
             </objects>
             <point key="canvasLocation" x="2607" y="1012"/>
         </scene>
+        <!--CustomTitleView-->
+        <scene sceneID="rwc-tW-JmG">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CustomTitleView" id="K4c-oC-etJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FRE-bu-JTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2260" y="1141"/>
+        </scene>
         <!--Naked-->
         <scene sceneID="Lsj-Sw-f2S">
             <objects>
@@ -90,7 +98,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="npY-V3-dgn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2544.9275362318845" y="677.67857142857144"/>
+            <point key="canvasLocation" x="2725" y="584"/>
         </scene>
         <!--Main-->
         <scene sceneID="vdj-Q8-zTN">
@@ -161,6 +169,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="bdK-ba-Pzk" kind="show" id="zpm-JJ-fAg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="KSr-Ze-Gor" style="IBUITableViewCellStyleDefault" id="5bL-m7-3PI">
+                                        <rect key="frame" x="0.0" y="132" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5bL-m7-3PI" id="JX3-cR-MsF">
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="CustomTitleView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KSr-Ze-Gor">
+                                                    <rect key="frame" x="20" y="0.0" width="356" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="K4c-oC-etJ" kind="show" id="Kkf-FB-CRQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

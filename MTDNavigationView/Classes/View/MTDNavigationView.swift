@@ -29,6 +29,20 @@ open class MTDNavigationView: UIView {
         return label
     }()
     
+    open var titleView: UIView? = nil {
+        didSet {
+            oldValue?.removeFromSuperview()
+            if let titleView = self.titleView {
+                titleLabel.isHidden = true
+                titleView.translatesAutoresizingMaskIntoConstraints = false
+                self.contentView.addSubview(titleView)
+                titleView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+                titleView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+            } else {
+                titleLabel.isHidden = false
+            }
+        }
+    }
     
     open private(set) lazy var contentView: UIView = NavigationContentView()
     open private(set) lazy var shadowImageView: UIImageView = ShadowImageView()
@@ -108,6 +122,20 @@ open class MTDNavigationView: UIView {
     /// 自动设置返回按钮显示/隐藏(处在MTDNavigationController时才有用)
     open var automaticallyAdjustsBackItemHidden: Bool = true
     
+    /// 设置titleLabel跟随owning?.title变化
+    open var owning: UIViewController? {
+        didSet {
+            titleObservation?.invalidate()
+            titleLabel.text = self.owning?.title
+            if let owning = self.owning, self.window != nil {
+                self.titleObservation = owning.observe(\.title, changeHandler: { [weak self] (vc, _) in
+                    self?.titleLabel.text = vc.title
+                })
+            }
+        }
+    }
+    
+    var titleObservation: NSKeyValueObservation?
     var backItemHiddenObservation: NSKeyValueObservation?
     
     private weak var showBackButtonConstraint: NSLayoutConstraint?
@@ -199,6 +227,18 @@ open class MTDNavigationView: UIView {
         self.backItemHiddenObservation = backButton.observe(\.isHidden, changeHandler: { [weak self] (button, _) in
             self?.onBackButtonHidden(button.isHidden)
         })
+    }
+    
+    open override func willMove(toWindow newWindow: UIWindow?) {
+        titleObservation?.invalidate()
+        titleObservation = nil
+        if newWindow != nil, let owning = self.owning {
+            titleLabel.text = owning.title
+            self.titleObservation = owning.observe(\.title) { [weak self] (vc, _) in
+                self?.titleLabel.text = vc.title
+            }
+        }
+        super.willMove(toWindow: newWindow)
     }
     
     open func onBackButtonHidden(_ isHidden: Bool) {
