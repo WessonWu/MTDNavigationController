@@ -72,16 +72,31 @@ extension UIViewController {
     }
     
     func adjustsScrollViewInsets(top: CGFloat) {
-        if let scrollView = self.view as? UIScrollView {
-            scrollView.adjustedContentInsetTop = top
-            return
-        }
-        
-        for subview in self.view.subviews {
-            if let scrollView = subview as? UIScrollView {
-                scrollView.adjustedContentInsetTop = top
-                break
-            }
-        }
+        self.view.adjustedScrollViewInsets(in: self.view, topInset: top)
     }
 }
+
+fileprivate extension UIView {
+    @discardableResult
+    func adjustedScrollViewInsets(in root: UIView, topInset: CGFloat) -> Bool {
+        let edge = self.convert(self.bounds, to: root).minY - root.bounds.minY
+        let inset = topInset - edge
+        if let scrollView = self as? UIScrollView {
+            scrollView.adjustedContentInsetTop = max(0, inset)
+            return true
+        }
+        
+        guard inset > 0 else {
+            return false
+        }
+        
+        for subview in subviews {
+            if subview.adjustedScrollViewInsets(in: self, topInset: inset) {
+                return true
+            }
+        }
+        
+        return false
+    }
+}
+
