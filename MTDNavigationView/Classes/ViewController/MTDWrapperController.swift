@@ -46,22 +46,33 @@ open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
         automaticallyAdjustsInsetsIfNeeded()
     }
     
+    func shouldAdjustsScrollViewInsets(for navigationView: MTDNavigationView) -> Bool {
+        if navigationView.isNavigationViewHidden {
+            return false
+        }
+        if navigationView.isTranslucent {
+            return true
+        }
+        return contentViewController.extendedLayoutIncludesOpaqueBars && !contentViewController.edgesForExtendedLayout.contains(.top)
+    }
+    
     func automaticallyAdjustsInsetsIfNeeded() {
         let mtd_vc = contentViewController.mtd
         let navigationView = mtd_vc.navigationView
-        let extended = contentViewController.extendedLayoutIncludesOpaqueBars && !contentViewController.edgesForExtendedLayout.contains(.top)
-        let shouldAdjustsScrollInsets = !navigationView.isNavigationViewHidden && (navigationView.isTranslucent || extended)
+        
+        let shouldAdjustsScrollViewInsets = self.shouldAdjustsScrollViewInsets(for: navigationView)
         if #available(iOS 11.0, *) {
-            if shouldAdjustsScrollInsets {
+            if shouldAdjustsScrollViewInsets {
                 contentViewController.adjustedSafeAreaInsetTop = navigationView.frame.height - self.view.safeAreaInsets.top
             } else {
                 contentViewController.adjustedSafeAreaInsetTop = 0
             }
         } else {
-            if shouldAdjustsScrollInsets && self.automaticallyAdjustsScrollViewInsets {
+            if shouldAdjustsScrollViewInsets && self.automaticallyAdjustsScrollViewInsets {
                 contentViewController.adjustsScrollViewInsets(top: navigationView.frame.height)
             } else {
-                contentViewController.adjustsScrollViewInsets(top: 0)
+                let inset = navigationView.isNavigationViewHidden ? UIApplication.shared.statusBarFrame.height : 0
+                contentViewController.adjustsScrollViewInsets(top:  inset)
             }
         }
     }
@@ -81,6 +92,7 @@ open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
             } else {
                 // 避免UIScrollView的contentInset多出20的高度
                 edges.remove(.top)
+                self.view.setNeedsLayout()
             }
             return edges
         }
