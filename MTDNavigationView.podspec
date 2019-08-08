@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.name             = 'MTDNavigationView'
   s.version          = '0.1.2'
   s.summary          = '自定义导航栏'
-  s.description      = '自定义导航栏'
+  s.description      = '自定义导航栏控制器，每个ViewController独立的导航栏View'
 
   s.homepage         = 'https://github.com/WessonWu/MTDNavigationController'
   s.license          = { :type => 'MIT', :text => <<-LICENSE
