@@ -135,6 +135,9 @@ open class MTDNavigationView: UIView {
         }
     }
     
+    /// 在自动适配contentInsets时会使用到
+    open var additionalAdjustedContentInsetTop: CGFloat = 0
+    
     var titleObservation: NSKeyValueObservation?
     var backItemHiddenObservation: NSKeyValueObservation?
     

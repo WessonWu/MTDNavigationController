@@ -31,11 +31,9 @@ class TranslucentTableViewController: UITableViewController {
         navigationView.backgroundColor = UIColor.blue.withAlphaComponent(0)
         navigationView.shadowImageView.image = UIImage()
         
+        navigationView.additionalAdjustedContentInsetTop = -44
+        
         translucentSwitch.isOn = navigationView.isTranslucent
-    }
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
     }
 
     // MARK: - Table view data source
