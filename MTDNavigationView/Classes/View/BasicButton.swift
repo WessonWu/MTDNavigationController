@@ -41,6 +41,26 @@ open class ImageButton: BasicButton {
             addTarget(target, action: action, for: .touchUpInside)
         }
     }
+    
+    open override var titleLabel: UILabel? {
+        return nil
+    }
+    
+    open override func setTitle(_ title: String?, for state: UIControl.State) {
+        // do nothing
+    }
+    
+    open override func setTitleColor(_ color: UIColor?, for state: UIControl.State) {
+        // do nothing
+    }
+    
+    open override func setTitleShadowColor(_ color: UIColor?, for state: UIControl.State) {
+        // do nothing
+    }
+    
+    open override func setAttributedTitle(_ title: NSAttributedString?, for state: UIControl.State) {
+        // do nothing
+    }
 }
 
 open class TitleButton: BasicButton {
@@ -52,17 +72,25 @@ open class TitleButton: BasicButton {
             super.tintColor = newValue
             let color = newValue ?? MTDNavigationManager.style.tintColor
             setTitleColor(color, for: .normal)
-            setTitleColor(color.withAlphaComponent(0.4), for: .highlighted)
             setTitleColor(color.withAlphaComponent(0.4), for: .disabled)
         }
     }
     
     public convenience init(title: String?, target: Any? = nil, action: Selector? = nil) {
-        self.init(type: .custom)
+        self.init(type: .system)
         setTitle(title, for: .normal)
         if let target = target, let action = action {
             addTarget(target, action: action, for: .touchUpInside)
         }
+        self.titleLabel?.font = MTDNavigationManager.style.textFont
+    }
+    
+    open override var imageView: UIImageView? {
+        return nil
+    }
+    
+    open override func setImage(_ image: UIImage?, for state: UIControl.State) {
+        // do nothing
     }
 }
 
@@ -79,18 +107,6 @@ open class BackButton: ImageButton {
                                               right: CGFloat.defaultEdge)
     }
 }
-
-extension UIImage {
-    func withAlpha(_ alpha: CGFloat) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        defer {
-            UIGraphicsEndImageContext()
-        }
-        draw(at: .zero, blendMode: .normal, alpha: alpha)
-        return UIGraphicsGetImageFromCurrentImageContext()
-    }
-}
-
 
 extension CGFloat {
     static let defaultEdge: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 10 : 8

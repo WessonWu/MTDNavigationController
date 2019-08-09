@@ -22,7 +22,7 @@ class TranslucentTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         let mtd_self = self.mtd
-        self.title = "Translucent"
+        self.title = "长标题长标题长标题长标题长标题长标题长标题长标题长标题长标题长标题长标题"
         
         let navigationView = mtd_self.navigationView
         navigationView.isTranslucent = true

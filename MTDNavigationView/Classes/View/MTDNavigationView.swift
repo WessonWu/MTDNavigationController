@@ -23,7 +23,7 @@ open class MTDNavigationView: UIView {
     open private(set) lazy var backButton: UIControl = MTDNavigationManager.backButton()
     open private(set) lazy var titleLabel: UILabel = {
        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.font = MTDNavigationManager.style.titleFont
         label.textColor = MTDNavigationManager.style.titleColor
         label.textAlignment = .center
         return label
@@ -45,7 +45,7 @@ open class MTDNavigationView: UIView {
     }
     
     open private(set) lazy var contentView: UIView = NavigationContentView()
-    open private(set) lazy var shadowImageView: UIImageView = ShadowImageView()
+    open private(set) lazy var shadowImageView: UIImageView = ShadowImageView(image: MTDNavigationManager.style.shadowImage)
     
     open var leftNavigationItemViews: [UIView] = [] {
         didSet {
@@ -195,6 +195,10 @@ open class MTDNavigationView: UIView {
         backButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         backButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
+        titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).setup { (constraint) in
+            constraint.priority = UILayoutPriority(rawValue: 800)
+            constraint.isActive = true
+        }
         titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         

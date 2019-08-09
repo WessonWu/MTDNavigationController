@@ -25,10 +25,18 @@ public final class MTDNavigationViewDefaultBuilder: MTDNavigationViewBuilderType
 }
 
 public struct MTDNavigationStyle {
+    // basic attributes
     public var backgroundColor: UIColor = UIColor.white
-    public var titleColor: UIColor = UIColor.black
-    public var tintColor: UIColor = UIColor.black
+    public var shadowImage: UIImage? = nil
     public var contentHeight: CGFloat = 44
+    
+    // Title Attributes
+    public var titleFont: UIFont = UIFont.boldSystemFont(ofSize: 17)
+    public var titleColor: UIColor = UIColor.black
+    
+    // ItemView tintColor
+    public var tintColor: UIColor = UIColor.black
+    public var textFont: UIFont = UIFont.systemFont(ofSize: 16)
     
     public init() {}
 }
