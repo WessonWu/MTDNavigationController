@@ -35,14 +35,8 @@ open class BasicButton: UIButton {
 
 open class ImageButton: BasicButton {
     public convenience init(image: UIImage?, target: Any? = nil, action: Selector? = nil) {
-        self.init(type: .custom)
+        self.init(type: .system)
         setImage(image, for: .normal)
-        if adjustsImageWhenHighlighted {
-            setImage(image?.withAlpha(0.6), for: .highlighted)
-        }
-        if adjustsImageWhenDisabled {
-            setImage(image?.withAlpha(0.4), for: .disabled)
-        }
         if let target = target, let action = action {
             addTarget(target, action: action, for: .touchUpInside)
         }
@@ -58,7 +52,7 @@ open class TitleButton: BasicButton {
             super.tintColor = newValue
             let color = newValue ?? MTDNavigationManager.style.tintColor
             setTitleColor(color, for: .normal)
-            setTitleColor(color.withAlphaComponent(0.6), for: .highlighted)
+            setTitleColor(color.withAlphaComponent(0.4), for: .highlighted)
             setTitleColor(color.withAlphaComponent(0.4), for: .disabled)
         }
     }

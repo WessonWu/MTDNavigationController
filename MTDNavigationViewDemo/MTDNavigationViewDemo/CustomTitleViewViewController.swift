@@ -20,6 +20,8 @@ class CustomTitleViewViewController: UIViewController {
         
         let titleView = UIButton(type: .contactAdd)
         navigationView.titleView = titleView
+        // 不显示返回按钮
+        navigationView.automaticallyAdjustsBackItemHidden = false
     }
     
 

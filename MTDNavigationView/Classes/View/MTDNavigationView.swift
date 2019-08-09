@@ -152,6 +152,7 @@ open class MTDNavigationView: UIView {
     }
     
     private func commonInitilization() {
+        self.backButton.isHidden = true
         self.clipsToBounds = false
         self.backgroundColor = MTDNavigationManager.style.backgroundColor
         self.backButton.addTarget(self, action: #selector(onBackClick(_:)), for: .touchUpInside)
