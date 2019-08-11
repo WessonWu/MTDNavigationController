@@ -12,6 +12,9 @@ public protocol MTDViewControllerNaked {}
 
 open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
     public private(set) var contentViewController: UIViewController!
+    
+    public private(set) var isViewAppearing: Bool = false
+    
     public convenience init(contentViewController: UIViewController) {
         self.init()
         self.contentViewController = contentViewController
@@ -39,6 +42,32 @@ open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.view.insertSubview(contentView, at: 0)
         vc.didMove(toParent: self)
+    }
+    
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.isViewAppearing = true
+        children.forEach { $0.beginAppearanceTransition(true, animated: animated) }
+    }
+    
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.isViewAppearing = false
+        children.forEach { $0.endAppearanceTransition() }
+    }
+    
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        children.forEach { $0.beginAppearanceTransition(false, animated: animated) }
+    }
+    
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        children.forEach { $0.endAppearanceTransition() }
+    }
+    
+    open override var shouldAutomaticallyForwardAppearanceMethods: Bool {
+        return false
     }
     
     open override func viewDidLayoutSubviews() {
