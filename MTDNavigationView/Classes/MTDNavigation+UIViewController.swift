@@ -78,8 +78,8 @@ public extension MTDNavigation where Base: UIViewController {
     }
     
     func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        let wrapped = MTDSafeWrapViewController(viewControllerToPresent)
         let mtd_vc = viewControllerToPresent.mtd
+        let wrapped = mtd_vc.safeWrap()
         let navigationView = mtd_vc.navigationView
         if navigationView.delegate == nil {
             navigationView.delegate = wrapped as? MTDWrapperController
