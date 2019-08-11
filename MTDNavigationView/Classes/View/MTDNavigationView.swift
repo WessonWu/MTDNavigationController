@@ -123,23 +123,17 @@ open class MTDNavigationView: UIView {
     open var automaticallyAdjustsBackItemHidden: Bool = true
     
     /// 设置titleLabel跟随owning?.title变化
-    open var owning: UIViewController? {
+    open weak var owning: UIViewController? {
         didSet {
-            titleObservation?.invalidate()
-            titleLabel.text = self.owning?.title
-            if let owning = self.owning, self.window != nil {
-                self.titleObservation = owning.observe(\.title, changeHandler: { [weak self] (vc, _) in
-                    self?.titleLabel.text = vc.title
-                })
-            }
+            addTitleObserver(in: self.window)
         }
     }
     
     /// 在自动适配contentInsets时会使用到
     open var additionalAdjustedContentInsetTop: CGFloat = 0
     
-    var titleObservation: NSKeyValueObservation?
-    var backItemHiddenObservation: NSKeyValueObservation?
+    var titleObserver: NSKeyValueObservation?
+    var backItemHiddenObserver: NSKeyValueObservation?
     
     private weak var showBackButtonConstraint: NSLayoutConstraint?
     private weak var hideBackButtonConstraint: NSLayoutConstraint?
@@ -232,20 +226,13 @@ open class MTDNavigationView: UIView {
         
         
         self.onBackButtonHidden(backButton.isHidden)
-        self.backItemHiddenObservation = backButton.observe(\.isHidden, changeHandler: { [weak self] (button, _) in
+        self.backItemHiddenObserver = backButton.observe(\.isHidden, changeHandler: { [weak self] (button, _) in
             self?.onBackButtonHidden(button.isHidden)
         })
     }
     
     open override func willMove(toWindow newWindow: UIWindow?) {
-        titleObservation?.invalidate()
-        titleObservation = nil
-        if newWindow != nil, let owning = self.owning {
-            titleLabel.text = owning.title
-            self.titleObservation = owning.observe(\.title) { [weak self] (vc, _) in
-                self?.titleLabel.text = vc.title
-            }
-        }
+        addTitleObserver(in: newWindow)
         super.willMove(toWindow: newWindow)
     }
     
@@ -308,8 +295,30 @@ open class MTDNavigationView: UIView {
         delegate?.performBackAction(in: self)
     }
     
+    
+    func addTitleObserver(in window: UIWindow?) {
+        removeTitleObserverIfNeeded()
+        guard window != nil, let owning = self.owning else {
+            return
+        }
+        titleLabel.text = owning.title
+        self.titleObserver = owning.observe(\.title) { [weak self] (vc, _) in
+            self?.titleLabel.text = vc.title
+        }
+    }
+    
+    func removeTitleObserverIfNeeded() {
+        if let observer = self.titleObserver {
+            observer.invalidate()
+            self.titleObserver = nil
+        }
+    }
+    
     deinit {
-        self.backItemHiddenObservation?.invalidate()
-        self.backItemHiddenObservation = nil
+        removeTitleObserverIfNeeded()
+        if let observer = self.backItemHiddenObserver {
+            observer.invalidate()
+            self.backItemHiddenObserver = nil
+        }
     }
 }
