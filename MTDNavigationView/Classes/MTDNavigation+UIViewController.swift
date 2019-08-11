@@ -29,11 +29,15 @@ public extension MTDNavigation where Base: UIViewController {
         return vc as? MTDNavigationController
     }
     
-    var wrapperController: MTDWrapperController? {
-        return base.parent as? MTDWrapperController
+    var wrapper: MTDWrapperController? {
+        return self.base.parent as? MTDWrapperController
     }
     
-    var unwrapped: UIViewController {
+    func safeWrap() -> UIViewController {
+        return MTDSafeWrapViewController(base)
+    }
+    
+    func safeUnwrap() -> UIViewController {
         return MTDSafeUnwrapViewController(base)
     }
     
@@ -70,7 +74,7 @@ public extension MTDNavigation where Base: UIViewController {
     }
     
     func setNavigationViewHidden(_ hidden: Bool, animated: Bool) {
-        wrapperController?.setNavigationViewHidden(hidden, animated: animated)
+        wrapper?.setNavigationViewHidden(hidden, animated: animated)
     }
     
     func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
