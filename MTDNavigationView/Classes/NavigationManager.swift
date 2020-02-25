@@ -1,5 +1,5 @@
 //
-//  MTDNavigationManager.swift
+//  NavigationManager.swift
 //  MTDNavigationViewDemo
 //
 //  Created by wuweixin on 2019/8/5.
@@ -8,23 +8,23 @@
 
 import UIKit
 
-public protocol MTDNavigationViewBuilderType {
+public protocol NavigationViewBuilderType {
     func backButton() -> UIControl
-    func build() -> MTDNavigationView
+    func build() -> NavigationView
 }
 
-public final class MTDNavigationViewDefaultBuilder: MTDNavigationViewBuilderType {
+public final class DefaultNavigationViewBuilder: NavigationViewBuilderType {
     
     public func backButton() -> UIControl {
         return BackButton.default()
     }
     
-    public func build() -> MTDNavigationView {
-        return MTDNavigationView()
+    public func build() -> NavigationView {
+        return NavigationView()
     }
 }
 
-public struct MTDNavigationStyle {
+public struct NavigationStyle {
     // basic attributes
     public var backgroundColor: UIColor = UIColor.white
     public var shadowImage: UIImage? = nil
@@ -41,15 +41,15 @@ public struct MTDNavigationStyle {
     public init() {}
 }
 
-public final class MTDNavigationManager {
-    public static var navigationViewBuilder: MTDNavigationViewBuilderType = MTDNavigationViewDefaultBuilder()
-    public static var style: MTDNavigationStyle = MTDNavigationStyle()
+public final class NavigationManager {
+    public static var navigationViewBuilder: NavigationViewBuilderType = DefaultNavigationViewBuilder()
+    public static var style: NavigationStyle = NavigationStyle()
     
-    public class func backButton(with builder: MTDNavigationViewBuilderType = MTDNavigationManager.navigationViewBuilder) -> UIControl {
+    public class func backButton(with builder: NavigationViewBuilderType = NavigationManager.navigationViewBuilder) -> UIControl {
         return builder.backButton()
     }
     
-    public class func build(with builder: MTDNavigationViewBuilderType = MTDNavigationManager.navigationViewBuilder) -> MTDNavigationView {
+    public class func build(with builder: NavigationViewBuilderType = NavigationManager.navigationViewBuilder) -> NavigationView {
         return builder.build()
     }
 }

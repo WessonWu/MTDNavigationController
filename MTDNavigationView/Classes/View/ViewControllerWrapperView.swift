@@ -9,11 +9,11 @@
 import UIKit
 
 final class ViewControllerWrapperView: TransparentBackgroundView {
-    var navigationView: MTDNavigationView?
+    var navigationView: NavigationView?
     weak var contentViewController: UIViewController?
     
     override func addSubview(_ view: UIView) {
-        if let navigationView = view as? MTDNavigationView {
+        if let navigationView = view as? NavigationView {
             self.navigationView = navigationView
         }
         super.addSubview(view)

@@ -1,5 +1,5 @@
 //
-//  MTDNavigationView.swift
+//  NavigationView.swift
 //  MTDNavigationViewDemo
 //
 //  Created by wuweixin on 2019/8/1.
@@ -8,23 +8,23 @@
 
 import UIKit
 
-public protocol MTDNavigationViewDelegate: AnyObject {
-    func performBackAction(in navigationView: MTDNavigationView)
+public protocol NavigationViewDelegate: AnyObject {
+    func performBackAction(in navigationView: NavigationView)
 }
 
-public extension MTDNavigationViewDelegate {
-    func performBackAction(in navigationView: MTDNavigationView) {}
+public extension NavigationViewDelegate {
+    func performBackAction(in navigationView: NavigationView) {}
 }
 
-open class MTDNavigationView: UIView {
+open class NavigationView: UIView {
     
-    open weak var delegate: MTDNavigationViewDelegate?
+    open weak var delegate: NavigationViewDelegate?
     
-    open private(set) lazy var backButton: UIControl = MTDNavigationManager.backButton()
+    open private(set) lazy var backButton: UIControl = NavigationManager.backButton()
     open private(set) lazy var titleLabel: UILabel = {
        let label = UILabel()
-        label.font = MTDNavigationManager.style.titleFont
-        label.textColor = MTDNavigationManager.style.titleColor
+        label.font = NavigationManager.style.titleFont
+        label.textColor = NavigationManager.style.titleColor
         label.textAlignment = .center
         return label
     }()
@@ -45,7 +45,7 @@ open class MTDNavigationView: UIView {
     }
     
     open private(set) lazy var contentView: UIView = NavigationContentView()
-    open private(set) lazy var shadowImageView: UIImageView = ShadowImageView(image: MTDNavigationManager.style.shadowImage)
+    open private(set) lazy var shadowImageView: UIImageView = ShadowImageView(image: NavigationManager.style.shadowImage)
     
     open var leftNavigationItemViews: [UIView] = [] {
         didSet {
@@ -92,7 +92,7 @@ open class MTDNavigationView: UIView {
     }
     
     open var contentHeight: CGFloat {
-        return MTDNavigationManager.style.contentHeight
+        return NavigationManager.style.contentHeight
     }
     
     /// A Boolean value indicating whether the navigation view is translucent (true) or not (false).
@@ -151,7 +151,7 @@ open class MTDNavigationView: UIView {
     private func commonInitilization() {
         self.backButton.isHidden = true
         self.clipsToBounds = false
-        self.backgroundColor = MTDNavigationManager.style.backgroundColor
+        self.backgroundColor = NavigationManager.style.backgroundColor
         self.backButton.addTarget(self, action: #selector(onBackClick(_:)), for: .touchUpInside)
         self.isNavigationViewHidden = super.isHidden
         

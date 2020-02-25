@@ -8,7 +8,7 @@
 
 import MTDNavigationView
 
-class NakedTableViewController: UITableViewController, MTDViewControllerNaked {
+class NakedTableViewController: UITableViewController, NavigationControllerUnwrapping {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
 //
-//  MTDNavigationController.swift
+//  NavigationController.swift
 //  MTDNavigationViewDemo
 //
 //  Created by wuweixin on 2019/8/1.
@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-open class MTDNavigationController: UINavigationController, MTDNavigationViewDelegate {
+open class NavigationController: UINavigationController, NavigationViewDelegate {
     public typealias Completion = (Bool) -> Void
     
     open override var delegate: UINavigationControllerDelegate? {
@@ -242,13 +242,13 @@ open class MTDNavigationController: UINavigationController, MTDNavigationViewDel
     }
     
     
-    open func performBackAction(in navigationView: MTDNavigationView) {
+    open func performBackAction(in navigationView: NavigationView) {
         self.popViewController(animated: true)
     }
     
 }
 // MARK: - UINavigationControllerDelegate Proxy
-extension MTDNavigationController: UINavigationControllerDelegate {
+extension NavigationController: UINavigationControllerDelegate {
     open func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         let isRootVC = viewController.isEqual(self.viewControllers.first)
         let unwrapped = MTDSafeUnwrapViewController(viewController)
@@ -275,7 +275,7 @@ extension MTDNavigationController: UINavigationControllerDelegate {
             mtd_vc.disableInteractivePop = navigationView.superview == nil || navigationView.isHidden
         }
         
-        MTDNavigationController.attemptRotationToDeviceOrientation()
+        NavigationController.attemptRotationToDeviceOrientation()
         
         self.mtd_delegate?.navigationController?(navigationController,
                                                 didShow: unwrapped,
@@ -315,7 +315,7 @@ extension MTDNavigationController: UINavigationControllerDelegate {
     }
 }
 
-extension MTDNavigationController: UIGestureRecognizerDelegate {
+extension NavigationController: UIGestureRecognizerDelegate {
     open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard gestureRecognizer.isEqual(self.interactivePopGestureRecognizer) else {
             return true

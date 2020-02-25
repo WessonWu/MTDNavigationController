@@ -15,22 +15,22 @@ internal struct AssociatedKeys {
     static var adjustedSafeAreaInsetTop = "mtd_adjustedSafeAreaInsetTop"
 }
 
-extension UIViewController: MTDNavigationCompatible {}
+extension UIViewController: NavigationCompatible {}
 
-public extension MTDNavigation where Base: UIViewController {
-    var navigationController: MTDNavigationController? {
+public extension Navigation where Base: UIViewController {
+    var navigationController: NavigationController? {
         var vc: UIViewController = self.base
-        while !vc.isKind(of: MTDNavigationController.self) {
+        while !vc.isKind(of: NavigationController.self) {
             guard let navigationController = vc.navigationController else {
                 return nil
             }
             vc = navigationController
         }
-        return vc as? MTDNavigationController
+        return vc as? NavigationController
     }
     
-    var wrapper: MTDWrapperController? {
-        return self.base.parent as? MTDWrapperController
+    var wrapper: NavigationWrapperController? {
+        return self.base.parent as? NavigationWrapperController
     }
     
     func safeWrap() -> UIViewController {
@@ -41,11 +41,11 @@ public extension MTDNavigation where Base: UIViewController {
         return MTDSafeUnwrapViewController(base)
     }
     
-    var navigationView: MTDNavigationView {
-        if let view = objc_getAssociatedObject(base, &AssociatedKeys.navigationView) as? MTDNavigationView {
+    var navigationView: NavigationView {
+        if let view = objc_getAssociatedObject(base, &AssociatedKeys.navigationView) as? NavigationView {
             return view
         }
-        if let customizable = base as? MTDNavigationViewCustomizable {
+        if let customizable = base as? NavigationViewCustomizable {
             let view = customizable.navigationView
             if view.owning == nil {
                 view.owning = base
@@ -53,7 +53,7 @@ public extension MTDNavigation where Base: UIViewController {
             objc_setAssociatedObject(base, &AssociatedKeys.navigationView, view, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return view
         }
-        let view = MTDNavigationManager.build()
+        let view = NavigationManager.build()
         view.owning = base
         objc_setAssociatedObject(base, &AssociatedKeys.navigationView, view, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         return view
@@ -82,13 +82,13 @@ public extension MTDNavigation where Base: UIViewController {
         let wrapped = mtd_vc.safeWrap()
         let navigationView = mtd_vc.navigationView
         if navigationView.delegate == nil {
-            navigationView.delegate = wrapped as? MTDWrapperController
+            navigationView.delegate = wrapped as? NavigationWrapperController
         }
         base.present(wrapped, animated: flag, completion: completion)
     }
     
     func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        if let vc = base.parent as? MTDWrapperController {
+        if let vc = base.parent as? NavigationWrapperController {
             vc.dismiss(animated: flag, completion: completion)
         } else {
             base.dismiss(animated: flag, completion: completion)
@@ -96,7 +96,7 @@ public extension MTDNavigation where Base: UIViewController {
     }
 }
 
-internal extension MTDNavigation where Base: UIViewController {
+internal extension Navigation where Base: UIViewController {
     var disableInteractivePopAssociatedObject: NSNumber? {
         return objc_getAssociatedObject(base, &AssociatedKeys.disableInteractivePop) as? NSNumber
     }

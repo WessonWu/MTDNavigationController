@@ -1,5 +1,5 @@
 //
-//  MTDWrapperController.swift
+//  NavigationWrapperController.swift
 //  MTDNavigationViewDemo
 //
 //  Created by wuweixin on 2019/8/1.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-public protocol MTDViewControllerNaked {}
+public protocol NavigationControllerUnwrapping {}
 
-open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
+open class NavigationWrapperController: UIViewController, NavigationViewDelegate {
     public private(set) var contentViewController: UIViewController!
     
     public private(set) var isViewAppearing: Bool = false
@@ -75,7 +75,7 @@ open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
         automaticallyAdjustsInsetsIfNeeded()
     }
     
-    func shouldAdjustsScrollViewInsets(for navigationView: MTDNavigationView) -> Bool {
+    func shouldAdjustsScrollViewInsets(for navigationView: NavigationView) -> Bool {
         if navigationView.isNavigationViewHidden {
             return false
         }
@@ -240,25 +240,25 @@ open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
         return String(format: "<%@: %p contentViewController: %@>", NSStringFromClass(type(of: self)), self, self.contentViewController)
     }
     
-    public func performBackAction(in navigationView: MTDNavigationView) {
+    public func performBackAction(in navigationView: NavigationView) {
         self.dismiss(animated: true, completion: nil)
     }
 }
 
 
 @inline(__always) func MTDSafeWrapViewController(_ viewController: UIViewController) -> UIViewController {
-    if let vc = viewController as? MTDWrapperController {
+    if let vc = viewController as? NavigationWrapperController {
         return vc
     }
-    if let _ = viewController as? MTDViewControllerNaked {
+    if let _ = viewController as? NavigationControllerUnwrapping {
         return viewController
     }
-    return MTDWrapperController(contentViewController: viewController)
+    return NavigationWrapperController(contentViewController: viewController)
 }
 
 
 @inline(__always) func MTDSafeUnwrapViewController(_ viewController: UIViewController) -> UIViewController {
-    if let vc = viewController as? MTDWrapperController {
+    if let vc = viewController as? NavigationWrapperController {
         return vc.contentViewController
     }
     return viewController

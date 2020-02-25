@@ -35,13 +35,13 @@ class FeaturesTableViewController: UITableViewController {
         let navigationView = mtd_self.navigationView
         self.isTranslucentSwitch.isOn = navigationView.isTranslucent
         self.isNavigationSwitchHiddenSwitch.isOn = mtd_self.isNavigationViewHidden
-        let imageItem = MTDImageItemView(image: #imageLiteral(resourceName: "nav_share_ic"), target: self, action: #selector(onShareItemClick(_:)))
+        let imageItem = ImageItemView(image: #imageLiteral(resourceName: "nav_share_ic"), target: self, action: #selector(onShareItemClick(_:)))
         imageItem.isEnabled = false
-        let titleItem = MTDTitleItemView(title: "完成", target: self, action: #selector(onShareItemClick(_:)))
+        let titleItem = TitleItemView(title: "完成", target: self, action: #selector(onShareItemClick(_:)))
         titleItem.isEnabled = false
         navigationView.leftNavigationItemViews = [imageItem, titleItem]
-        navigationView.rightNavigationItemViews = [MTDImageItemView(image: #imageLiteral(resourceName: "nav_share_ic"), target: self, action: #selector(onShareItemClick(_:))),
-                                                   MTDTitleItemView(title: "Present", target: self, action: #selector(presentNext))]
+        navigationView.rightNavigationItemViews = [ImageItemView(image: #imageLiteral(resourceName: "nav_share_ic"), target: self, action: #selector(onShareItemClick(_:))),
+                                                   TitleItemView(title: "Present", target: self, action: #selector(presentNext))]
         navigationView.backButton.isHidden = false
     }
     

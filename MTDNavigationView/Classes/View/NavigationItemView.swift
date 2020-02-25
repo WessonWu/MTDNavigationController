@@ -1,5 +1,5 @@
 //
-//  MTDNavigationItemView.swift
+//  NavigationItemView.swift
 //  MTDNavigationViewDemo
 //
 //  Created by wuweixin on 2019/8/3.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-open class MTDImageItemView: ImageButton {}
+open class ImageItemView: ImageButton {}
 
-open class MTDTitleItemView: TitleButton {}
+open class TitleItemView: TitleButton {}
 
-open class MTDSpacingItemView: TransparentBackgroundView {
+open class SpacingItemView: TransparentBackgroundView {
     open var spacing: CGFloat = 0
     open override var intrinsicContentSize: CGSize {
         return CGSize(width: spacing, height: 1)

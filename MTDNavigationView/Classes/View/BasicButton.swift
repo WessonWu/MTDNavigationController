@@ -21,11 +21,11 @@ open class BasicButton: UIButton {
     
     open override var intrinsicContentSize: CGSize {
         return CGSize(width: super.intrinsicContentSize.width,
-                      height: MTDNavigationManager.style.contentHeight)
+                      height: NavigationManager.style.contentHeight)
     }
     
     func commonInit() {
-        self.tintColor = MTDNavigationManager.style.tintColor
+        self.tintColor = NavigationManager.style.tintColor
         self.contentEdgeInsets = UIEdgeInsets(top: 0,
                                               left: CGFloat.defaultEdge,
                                               bottom: 0,
@@ -70,7 +70,7 @@ open class TitleButton: BasicButton {
         }
         set {
             super.tintColor = newValue
-            let color = newValue ?? MTDNavigationManager.style.tintColor
+            let color = newValue ?? NavigationManager.style.tintColor
             setTitleColor(color, for: .normal)
             setTitleColor(color.withAlphaComponent(0.4), for: .disabled)
         }
@@ -82,7 +82,7 @@ open class TitleButton: BasicButton {
         if let target = target, let action = action {
             addTarget(target, action: action, for: .touchUpInside)
         }
-        self.titleLabel?.font = MTDNavigationManager.style.textFont
+        self.titleLabel?.font = NavigationManager.style.textFont
     }
     
     open override var imageView: UIImageView? {

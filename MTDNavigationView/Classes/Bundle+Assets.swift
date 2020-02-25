@@ -9,7 +9,7 @@ import UIKit
 
 extension Bundle {
     static let mtd_assets: Bundle? = {
-        let bundle = Bundle(for: MTDNavigationView.self)
+        let bundle = Bundle(for: NavigationView.self)
         let path = "\(bundle.bundlePath)/MTDNavigationView_Xcassets.bundle"
         return Bundle(path: path)
     }()
