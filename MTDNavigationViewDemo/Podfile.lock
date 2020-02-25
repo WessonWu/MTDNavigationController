@@ -2,7 +2,7 @@ PODS:
   - FBRetainCycleDetector (0.1.4)
   - MLeaksFinder (1.0.0):
     - FBRetainCycleDetector
-  - MTDNavigationView (0.2.4)
+  - MTDNavigationView (1.0.0)
 
 DEPENDENCIES:
   - MLeaksFinder
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
-  MTDNavigationView: 626a48b9115331f0d7b2bb949d7b5dcb47b2c665
+  MTDNavigationView: f33db83457620c77ab545e4dbdc5d11301cc374a
 
 PODFILE CHECKSUM: 141d6ec2deabdd5bd45f32acda0bb407ae50844d
 
