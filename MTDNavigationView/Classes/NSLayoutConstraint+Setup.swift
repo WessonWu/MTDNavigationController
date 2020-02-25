@@ -10,7 +10,7 @@ import UIKit
 
 extension NSLayoutConstraint {
     @discardableResult
-    func setup(_ block: (NSLayoutConstraint) -> Void) -> NSLayoutConstraint {
+    func mtd_setup(_ block: (NSLayoutConstraint) -> Void) -> NSLayoutConstraint {
         block(self)
         return self
     }

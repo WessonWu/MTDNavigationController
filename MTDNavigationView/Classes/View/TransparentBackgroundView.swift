@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class NoBackgroundView: UIView {
+open class TransparentBackgroundView: UIView {
     open override var backgroundColor: UIColor? {
         get {
             return super.backgroundColor

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ViewControllerWrapperView: NoBackgroundView {
+final class ViewControllerWrapperView: TransparentBackgroundView {
     var navigationView: MTDNavigationView?
     weak var contentViewController: UIViewController?
     

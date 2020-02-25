@@ -11,12 +11,12 @@ import UIKit
 open class BasicButton: UIButton {
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInitilization()
+        commonInit()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInitilization()
+        commonInit()
     }
     
     open override var intrinsicContentSize: CGSize {
@@ -24,7 +24,7 @@ open class BasicButton: UIButton {
                       height: MTDNavigationManager.style.contentHeight)
     }
     
-    func commonInitilization() {
+    func commonInit() {
         self.tintColor = MTDNavigationManager.style.tintColor
         self.contentEdgeInsets = UIEdgeInsets(top: 0,
                                               left: CGFloat.defaultEdge,
@@ -96,11 +96,11 @@ open class TitleButton: BasicButton {
 
 open class BackButton: ImageButton {    
     public class func `default`() -> BackButton {
-        return BackButton(image: Bundle.image(named: "nav_bar_back_ic"))
+        return BackButton(image: Bundle.mtd_image(named: "nav_bar_back_ic"))
     }
     
-    override func commonInitilization() {
-        super.commonInitilization()
+    override func commonInit() {
+        super.commonInit()
         self.contentEdgeInsets = UIEdgeInsets(top: 0,
                                               left: 2 * CGFloat.defaultEdge,
                                               bottom: 0,

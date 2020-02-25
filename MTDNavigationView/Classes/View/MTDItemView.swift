@@ -12,7 +12,7 @@ open class MTDImageItemView: ImageButton {}
 
 open class MTDTitleItemView: TitleButton {}
 
-open class MTDSpacingItemView: NoBackgroundView {
+open class MTDSpacingItemView: TransparentBackgroundView {
     open var spacing: CGFloat = 0
     open override var intrinsicContentSize: CGSize {
         return CGSize(width: spacing, height: 1)

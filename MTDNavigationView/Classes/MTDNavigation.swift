@@ -16,8 +16,8 @@ public final class MTDNavigation<Base> {
 }
 
 public protocol MTDNavigationCompatible {
-    associatedtype CompatibleType
-    var mtd: CompatibleType { get }
+    associatedtype MTDNavigationCompatibleType
+    var mtd: MTDNavigationCompatibleType { get }
 }
 
 public extension MTDNavigationCompatible {

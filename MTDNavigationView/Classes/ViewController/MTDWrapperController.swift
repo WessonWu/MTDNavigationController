@@ -92,19 +92,19 @@ open class MTDWrapperController: UIViewController, MTDNavigationViewDelegate {
         let shouldAdjustsScrollViewInsets = self.shouldAdjustsScrollViewInsets(for: navigationView)
         if #available(iOS 11.0, *) {
             if shouldAdjustsScrollViewInsets {
-                contentViewController.adjustedSafeAreaInsetTop = navigationView.frame.height - self.view.safeAreaInsets.top + navigationView.additionalAdjustedContentInsetTop
+                contentViewController.mtd_adjustedSafeAreaInsetTop = navigationView.frame.height - self.view.safeAreaInsets.top + navigationView.additionalAdjustedContentInsetTop
             } else {
-                contentViewController.adjustedSafeAreaInsetTop = 0
+                contentViewController.mtd_adjustedSafeAreaInsetTop = 0
             }
         } else {
             if shouldAdjustsScrollViewInsets && self.automaticallyAdjustsScrollViewInsets {
-                contentViewController.adjustsScrollViewInsets(top: navigationView.frame.height + navigationView.additionalAdjustedContentInsetTop)
+                contentViewController.mtd_adjustsScrollViewInsets(top: navigationView.frame.height + navigationView.additionalAdjustedContentInsetTop)
             } else {
                 let inset = navigationView.isNavigationViewHidden
                     && self.automaticallyAdjustsScrollViewInsets
                     && contentViewController.edgesForExtendedLayout.contains(.top)
                     ? UIApplication.shared.statusBarFrame.height : 0
-                contentViewController.adjustsScrollViewInsets(top:  inset)
+                contentViewController.mtd_adjustsScrollViewInsets(top:  inset)
             }
         }
     }

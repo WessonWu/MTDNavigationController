@@ -170,19 +170,19 @@ open class MTDNavigationView: UIView {
         rightItemsStackView.translatesAutoresizingMaskIntoConstraints = false
         
         self.layoutMargins = .zero
-        contentView.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor, constant: 20).setup { (constraint) in
+        contentView.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor, constant: 20).mtd_setup { (constraint) in
             constraint.priority = UILayoutPriority(950)
             constraint.isActive = true
         }
         if #available(iOS 11.0, *) {
             self.directionalLayoutMargins = .zero
-            contentView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).setup { (constraint) in
+            contentView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).mtd_setup { (constraint) in
                 constraint.priority = UILayoutPriority(900)
                 constraint.isActive = true
             }
         }
         contentView.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor).isActive = true
-        contentView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).setup { (constraint) in
+        contentView.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor).mtd_setup { (constraint) in
             constraint.priority = UILayoutPriority(999)
             constraint.isActive = true
         }
@@ -192,7 +192,7 @@ open class MTDNavigationView: UIView {
         backButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         backButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
-        titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).setup { (constraint) in
+        titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5).mtd_setup { (constraint) in
             constraint.priority = UILayoutPriority(rawValue: 800)
             constraint.isActive = true
         }
@@ -200,20 +200,20 @@ open class MTDNavigationView: UIView {
         titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         leftItemsStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
-        leftItemsStackView.widthAnchor.constraint(equalToConstant: 0).setup { (constraint) in
+        leftItemsStackView.widthAnchor.constraint(equalToConstant: 0).mtd_setup { (constraint) in
             constraint.priority = UILayoutPriority(200)
             constraint.isActive = true
         }
-        leftItemsStackView.leadingAnchor.constraint(equalTo: backButton.trailingAnchor).setup { (constraint) in
+        leftItemsStackView.leadingAnchor.constraint(equalTo: backButton.trailingAnchor).mtd_setup { (constraint) in
             self.showBackButtonConstraint = constraint
         }
-        leftItemsStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).setup { (constraint) in
+        leftItemsStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).mtd_setup { (constraint) in
             self.hideBackButtonConstraint = constraint
         }
         leftItemsStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         rightItemsStackView.heightAnchor.constraint(equalTo: contentView.heightAnchor).isActive = true
-        rightItemsStackView.widthAnchor.constraint(equalToConstant: 0).setup { (constraint) in
+        rightItemsStackView.widthAnchor.constraint(equalToConstant: 0).mtd_setup { (constraint) in
             constraint.priority = UILayoutPriority(200)
             constraint.isActive = true
         }

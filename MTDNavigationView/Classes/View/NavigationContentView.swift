@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class NavigationContentView: NoBackgroundView {
+final class NavigationContentView: TransparentBackgroundView {
     override func commonInitilization() {
         super.commonInitilization()
         if #available(iOS 11.0, *) {

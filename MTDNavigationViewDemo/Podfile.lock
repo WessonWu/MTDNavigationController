@@ -9,7 +9,7 @@ DEPENDENCIES:
   - MTDNavigationView (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FBRetainCycleDetector
     - MLeaksFinder
 
@@ -24,4 +24,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 141d6ec2deabdd5bd45f32acda0bb407ae50844d
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

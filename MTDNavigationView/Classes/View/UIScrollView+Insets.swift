@@ -9,11 +9,11 @@
 import UIKit
 
 extension UIScrollView {
-    var hasSetAdjustedContentInsetTop: Bool {
+    var mtd_hasSetAdjustedContentInsetTop: Bool {
         return objc_getAssociatedObject(self, &AssociatedKeys.adjustedContentInsetTop) as? NSNumber != nil
     }
     // iOS 11.0 以下
-    var adjustedContentInsetTop: CGFloat {
+    var mtd_adjustedContentInsetTop: CGFloat {
         get {
             if let number = objc_getAssociatedObject(self, &AssociatedKeys.adjustedContentInsetTop) as? NSNumber {
                 return CGFloat(number.floatValue)
@@ -21,12 +21,12 @@ extension UIScrollView {
             return 0
         }
         set {
-            let originInsetTop = self.adjustedContentInsetTop
+            let originInsetTop = self.mtd_adjustedContentInsetTop
             guard originInsetTop != newValue else {
                 return
             }
             
-            let hasSetAdjustedContentInsetTop = self.hasSetAdjustedContentInsetTop
+            let hasSetAdjustedContentInsetTop = self.mtd_hasSetAdjustedContentInsetTop
             
             var contentInsetTop = self.contentInset.top
             contentInsetTop -= originInsetTop
@@ -49,7 +49,7 @@ extension UIScrollView {
 
 extension UIViewController {   
     @available(iOS 11.0, *)
-    var adjustedSafeAreaInsetTop: CGFloat {
+    var mtd_adjustedSafeAreaInsetTop: CGFloat {
         get {
             if let number = objc_getAssociatedObject(self, &AssociatedKeys.adjustedSafeAreaInsetTop) as? NSNumber {
                 return CGFloat(number.floatValue)
@@ -57,7 +57,7 @@ extension UIViewController {
             return 0
         }
         set {
-            let originInsetTop = self.adjustedSafeAreaInsetTop
+            let originInsetTop = self.mtd_adjustedSafeAreaInsetTop
             guard originInsetTop != newValue else {
                 return
             }
@@ -71,18 +71,18 @@ extension UIViewController {
         }
     }
     
-    func adjustsScrollViewInsets(top: CGFloat) {
-        self.view.adjustedScrollViewInsets(in: self.view, topInset: top)
+    func mtd_adjustsScrollViewInsets(top: CGFloat) {
+        self.view.mtd_adjustedScrollViewInsets(in: self.view, topInset: top)
     }
 }
 
 fileprivate extension UIView {
     @discardableResult
-    func adjustedScrollViewInsets(in root: UIView, topInset: CGFloat) -> Bool {
+    func mtd_adjustedScrollViewInsets(in root: UIView, topInset: CGFloat) -> Bool {
         let edge = self.convert(self.bounds, to: root).minY - root.bounds.minY
         let inset = topInset - edge
         if let scrollView = self as? UIScrollView {
-            scrollView.adjustedContentInsetTop = max(0, inset)
+            scrollView.mtd_adjustedContentInsetTop = max(0, inset)
             return true
         }
         
@@ -91,7 +91,7 @@ fileprivate extension UIView {
         }
         
         for subview in subviews {
-            if subview.adjustedScrollViewInsets(in: self, topInset: inset) {
+            if subview.mtd_adjustedScrollViewInsets(in: self, topInset: inset) {
                 return true
             }
         }
